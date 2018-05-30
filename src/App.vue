@@ -1,9 +1,7 @@
 <template>
-  <div id="app">
+  <div id="App">
     <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
-
     <Navbar/>
-
     <router-view :yourTrades="yourTrades" :theirTrades="theirTrades"/>
   </div>
 </template>
@@ -14,6 +12,7 @@ import Landing from '@/components/Landing'
 import Search from '@/components/Search'
 import Yours from '@/components/Yours'
 import Theirs from '@/components/Theirs'
+import Trade from '@/components/Trade'
 
 export default {
   name: 'App',
@@ -23,6 +22,7 @@ export default {
     Search,
     Yours,
     Theirs,
+    Trade
   },
   data(){
     return{
@@ -50,4 +50,7 @@ export default {
 </script>
 
 <style>
+.btn {
+  box-shadow: 2px 5px 20px #020202
+}
 </style>

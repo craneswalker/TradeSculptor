@@ -1,9 +1,18 @@
 <template>
-  <div class="Navbar">
+  <div id="Navbar">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary justify-content-center flex-column">
       <h1>Trade Sculptor</h1>
+      <!-- Reactive: Mobile -->
       <mq-layout mq="md" class="text-center">
-        <section :class='{hidden : navToggle}'>
+        <section v-if="$route.path=== '/yours' || $route.path=== '/theirs'" :class='{hidden : navToggle}'>
+          <router-link class="btn btn-primary btn-lg nav-link" to="/yours">Lookup Cards</router-link>    
+          <router-link class="btn btn-secondary btn-lg nav-link" to="/trade">See Your Trade</router-link>
+        </section>
+        <section v-else-if="$route.path=== '/trade'" :class='{hidden : navToggle}'>
+          <router-link class="btn btn-secondary btn-lg nav-link" to="/yours">Lookup Cards</router-link>    
+          <router-link class="btn btn-primary btn-lg nav-link" to="/trade">See Your Trade</router-link>
+        </section>
+        <section v-else :class='{hidden : navToggle}'>
           <router-link class="btn btn-secondary btn-lg nav-link" to="/yours">Lookup Cards</router-link>    
           <router-link class="btn btn-secondary btn-lg nav-link" to="/trade">See Your Trade</router-link>
         </section>
@@ -11,12 +20,23 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       </mq-layout>
+
+      <!-- Reactive: Desktop -->
       <mq-layout mq="lg">
-        <section class="desktop-buttons">
+        <section v-if="$route.path=== '/yours' || $route.path=== '/theirs'" class="desktop-buttons">
+          <router-link class="btn btn-primary btn-lg nav-link" to="/yours">Lookup Cards</router-link>    
+          <router-link class="btn btn-secondary btn-lg nav-link" to="/trade">See Your Trade</router-link>
+        </section>
+        <section v-else-if="$route.path=== '/trade'" class="desktop-buttons">
+          <router-link class="btn btn-secondary btn-lg nav-link" to="/yours">Lookup Cards</router-link>    
+          <router-link class="btn btn-primary btn-lg nav-link" to="/trade">See Your Trade</router-link>
+        </section>
+        <section v-else class="desktop-buttons">
           <router-link class="btn btn-secondary btn-lg nav-link" to="/yours">Lookup Cards</router-link>    
           <router-link class="btn btn-secondary btn-lg nav-link" to="/trade">See Your Trade</router-link>
         </section>
       </mq-layout>
+
     </nav>
   </div>
 </template>
@@ -27,13 +47,16 @@ export default {
   name: 'Navbar',
   data () {
     return {
-      navToggle: true
+      navToggle: true,
     }
   }
 }
 </script>
 
 <style scoped>
+#Navbar {
+  box-shadow: 5px 10px 20px #080808;
+}
 .hidden {
   display: none;
 }

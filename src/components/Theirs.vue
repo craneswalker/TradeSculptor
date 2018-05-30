@@ -4,7 +4,7 @@
       <router-link class="btn btn-secondary btn-lg" to="/yours">Search For YOUR Cards</router-link>
       <button class="btn btn-primary btn-lg">Search For THEIR Cards</button>
     </div>
-    <Search/>
+    <Search :yourTrades="yourTrades" :theirTrades="theirTrades"/>
   </div>
 </template>
 
@@ -15,7 +15,11 @@ export default {
   name: 'Theirs',
   components: {
     Search
-  }
+  },
+  props: [
+    'yourTrades',
+    'theirTrades'
+  ],
 }
 </script>
 

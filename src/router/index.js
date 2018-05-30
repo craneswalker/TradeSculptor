@@ -4,6 +4,7 @@ import Landing from '@/components/Landing'
 import Search from '@/components/Search'
 import Yours from '@/components/Yours'
 import Theirs from '@/components/Theirs'
+import Trade from '@/components/Trade'
 
 Vue.use(Router)
 
@@ -23,6 +24,11 @@ export default new Router({
       path: '/theirs',
       name: 'Theirs',
       component: Theirs
+    },
+    {
+      path: '/trade',
+      name: 'Trade',
+      component: Trade
     }
   ]
 })

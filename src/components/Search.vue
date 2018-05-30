@@ -53,7 +53,6 @@ export default {
       else {
         this.theirTrades.push(this.listOfCards[cardIndex])
       }
-      console.log(this.theirTrades, this.yourTrades)
       alert("This card has been added to your list.  Keep searching for more, or add another!")
     }
   }
@@ -96,7 +95,7 @@ h4 {
 }
 
 .gold {
-    border: 6px solid rgb(184,159,109)	;
+  border: 6px solid rgb(184,159,109)	;
   border-radius: 6px;
   display: inline-block;
   position: relative;
