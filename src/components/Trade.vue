@@ -1,8 +1,8 @@
 <template>
   <div id="Trade">
     <div class="jumbotron">
-      <h2 class="display-5">Your Trades</h2>
-      <h4 class="display-5">Value:</h4>
+      <h2 class="display-5">Your Cards</h2>
+      <h4 class="display-5 yourTradeValue"></h4>
       <div>
         <ul id="yourTradeUL">
           <li v-for="yourTrade in yourTrades" :key="yourTrade.set" class="text-center yourTradeLI">
@@ -14,10 +14,10 @@
                 <p>Quality:</p>
                 <div class="form-group">
                   <select @change="cardTotals()" class="custom-select yourTradeSelector">
-                    <option :value=yourTrade.price[0]>Near Mint: {{yourTrade.price[0]}}</option>
-                    <option :value=yourTrade.price[1]>Excellent: {{yourTrade.price[1]}}</option>
-                    <option :value=yourTrade.price[2]>Very Good: {{yourTrade.price[2]}}</option>
-                    <option :value=yourTrade.price[3]>Good: {{yourTrade.price[3]}}</option>
+                    <option :value=yourTrade.price[0]>Near Mint: ${{yourTrade.price[0]}}</option>
+                    <option :value=yourTrade.price[1]>Excellent: ${{yourTrade.price[1]}}</option>
+                    <option :value=yourTrade.price[2]>Very Good: ${{yourTrade.price[2]}}</option>
+                    <option :value=yourTrade.price[3]>Good: ${{yourTrade.price[3]}}</option>
                   </select>
                 </div>
               </div>
@@ -27,8 +27,8 @@
       </div>
     </div>
     <div class="jumbotron">
-      <h2 class="display-5">Their Trades</h2>
-      <h4 class="display-5">Value:</h4>
+      <h2 class="display-5">Their Cards</h2>
+      <h4 class="display-5 theirTradeValue"></h4>
       <div>
         <ul id="theirTradeUL">
           <li v-for="theirTrade in theirTrades" :key="theirTrade.set" class="text-center theirTradeLI">
@@ -39,11 +39,11 @@
                 <img :class=theirTrade.border :src=theirTrade.image :alt=theirTrade.title>
                 <p>Quality:</p>
                 <div class="form-group">
-                  <select class="custom-select theirTradeSelector">
-                    <option :value=theirTrade.price[0]>Near Mint: {{theirTrade.price[0]}}</option>
-                    <option :value=theirTrade.price[1]>Excellent: {{theirTrade.price[1]}}</option>
-                    <option :value=theirTrade.price[2]>Very Good: {{theirTrade.price[2]}}</option>
-                    <option :value=theirTrade.price[3]>Good: {{theirTrade.price[3]}}</option>
+                  <select @change="cardTotals()" class="custom-select theirTradeSelector">
+                    <option :value=theirTrade.price[0]>Near Mint: ${{theirTrade.price[0]}}</option>
+                    <option :value=theirTrade.price[1]>Excellent: ${{theirTrade.price[1]}}</option>
+                    <option :value=theirTrade.price[2]>Very Good: ${{theirTrade.price[2]}}</option>
+                    <option :value=theirTrade.price[3]>Good: ${{theirTrade.price[3]}}</option>
                   </select>
                 </div>
               </div>
@@ -67,15 +67,22 @@ export default {
   },
   methods: {
     cardTotals() {
-      const items = document.querySelectorAll('.yourTradeSelector')
-      console.log(items.length) 
-      const currentPrices = []
-      for (let i = 0; i < items.length; ++i) {
-        currentPrices.push(items[i].value)
-        console.log(currentPrices)
+      const yourItems = document.querySelectorAll('.yourTradeSelector')
+      const yourTradeTotal = document.querySelector('.yourTradeValue')
+      let yourSum = 0
+      for (let i = 0; i < yourItems.length; ++i) {
+        yourSum += (parseFloat(yourItems[i].value))
+        yourTradeTotal.textContent = "Value: $" + yourSum.toFixed(2)
+      }
+      const theirItems = document.querySelectorAll('.theirTradeSelector')
+      const theirTradeTotal = document.querySelector('.theirTradeValue')
+      let theirSum = 0
+      for (let i = 0; i < theirItems.length; ++i) {
+        theirSum += (parseFloat(theirItems[i].value))
+        theirTradeTotal.textContent = "Value: $" + theirSum.toFixed(2)
       }
     }
-  }
+  }  
 }
 </script>
 
@@ -127,4 +134,5 @@ h4 {
 .trade-button {
   margin: 10px;
 }
+
 </style>
