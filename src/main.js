@@ -7,7 +7,7 @@ import router from './router'
 
 Vue.use(VueMq, {
   breakpoints: {
-    md: 991,
+    md: 730,
     lg: Infinity,
   }
 })
