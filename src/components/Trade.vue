@@ -178,7 +178,6 @@ export default {
   methods: {
     cardTotals() {
       //Total value of cards you are trading
-      console.log(this.yourTrades)
       const yourItems = document.querySelectorAll('.yourTradeSelector')
       const yourTradeTotal = document.querySelector('.yourTradeValue')
       const yourQty = document.querySelectorAll('.yourQty')
