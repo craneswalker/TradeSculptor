@@ -1,6 +1,6 @@
 <template>
   <div id="Trade" class="align-items-center">
-    <section id="difference-container align-items-center">
+    <section id="difference-container align-items-center text-center">
         <div id="difference-card" class="card mb-3 text-center">
           <h1 class="display-1"></h1>
         </div>
@@ -15,6 +15,7 @@
             <option value="5">$5</option>
           </select>
         </div>
+        <button @click="finalizeTrade()" class="btn btn-primary">Finalize</button>
     </section>
     <mq-layout mq="md">
       <section id="trade-container-md">
@@ -166,8 +167,13 @@
 </template>
 
 <script>
+const moment = require('moment')
 export default {
   title: 'Trade',
+  data(){
+    return {
+    }
+  },
   props:[
     'yourTrades',
     'theirTrades'
@@ -205,14 +211,27 @@ export default {
       
       //Calculating if the difference between the trades is between the accepted range
       const wiggleSelector = document.querySelector('.wiggleSelector')
-      const wiggleRoom = parseInt(wiggleSelector.value)
-      const diff = parseInt(differenceCard.textContent.substring(19))
+      const wiggleRoom = parseFloat(wiggleSelector.value)
+      const diff = parseFloat(differenceCard.textContent.substring(19))
       if(diff > wiggleRoom == true) {
         differenceCard.style.backgroundColor = "red"
       }else{
         differenceCard.style.backgroundColor = "green"
       }
-    }
+    },
+    finalizeTrade() {
+      fetch('https://cors-anywhere.herokuapp.com/https://protected-earth-84113.herokuapp.com/trade/', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          date: moment().format("dddd, MMMM Do YYYY"),
+          your_trade: [this.yourTrades],
+          their_trade: [this.theirTrades]
+        })
+      })
+    },
   }  
 }
 </script>
@@ -238,19 +257,21 @@ export default {
 #difference-card {
   font-size: 25px
 }
-
 .jumbotron {
   width: 100%;
   border: 1px solid rgb(49,88,130)
 }
 .custom-select {
-  max-width: 300px;
+  max-width: 250px;
 }
 .yourTradeSelector {
   max-width: 300px;
 }
 .btn-lg {
   width: 49%;
+}
+.btn-primary {
+  width: 250px
 }
 .mb-3, li {
   display: inline-block;

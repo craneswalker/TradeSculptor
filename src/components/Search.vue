@@ -47,28 +47,10 @@ export default {
     },
     toTrades(listOfCard) {
       const cardIndex = this.listOfCards.indexOf(listOfCard)
-      if(this.$route.path == "/yours"){  
-        fetch('https://cors-anywhere.herokuapp.com/https://protected-earth-84113.herokuapp.com/trade/', {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            title: this.listOfCards[cardIndex].title,
-            set: this.listOfCards[cardIndex].set,
-            image: this.listOfCards[cardIndex].image,
-            border: this.listOfCards[cardIndex].border,
-            price: this.listOfCards[cardIndex].price,
-            route: this.$route.path.replace('/', '')
-          })
-        }) 
-          
-          
-          this.yourTrades.push(this.listOfCards[cardIndex])
-        }
+      if(this.$route.path == "/yours"){      
+        this.yourTrades.push(this.listOfCards[cardIndex])
+      }
       else {
-        //POST req to Sails API 
-          //whole listOfCard + this.$route.path
         this.theirTrades.push(this.listOfCards[cardIndex])
       }
       alert("This card has been added to your list.  Keep searching for more, or add another!")

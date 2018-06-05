@@ -10,7 +10,9 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "moment": "^2.22.2",
     "vue": "^2.5.2",
+    "vue-moment": "^4.0.0-0",
     "vue-mq": "^0.2.1",
     "vue-router": "^3.0.1"
   },
