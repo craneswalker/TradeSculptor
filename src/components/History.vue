@@ -1,13 +1,19 @@
 <template>
-  <div id="History">
-    <ul class="tradeList">
+  <div>
+    <ul>
+      <TradeHistory v-for ="pastTrade in pastTrades" :key="pastTrade.date" :pastTrade = "pastTrade"/>
     </ul>
   </div>
 </template>
 
 <script>
+import TradeHistory from '@/components/TradeHistory'
+
 export default {
   title: 'History',
+  components: {
+    TradeHistory
+  },
   data(){
     return{
       pastTrades: []
@@ -20,20 +26,28 @@ export default {
     getTradeHistory(){
       fetch("https://cors-anywhere.herokuapp.com/https://protected-earth-84113.herokuapp.com/trade/")
         .then(response => response.json())
-        // .then(response => {
-        //   this.pastTrades = response
-        //   // console.log(this.pastTrades[0].your_trade)
-        // })
         .then(response => {
-          for (let i = 0; i < response.length; i++) {
-            const listItem = document.createElement('li')
-            listItem.innerText = response[i].date
-            const appendLi = document.querySelector('.tradeList').appendChild(listItem)
-            // const date = document.querySelectorAll('li').innerText = response[i].date
-            console.log(response[i].date)
-            console.log(response[i].your_trade)
-          }
+          this.pastTrades = response
+          console.log(response)
+          // console.log(this.pastTrades[0].your_trade)
         })
+        // .then(response => {
+        //   for (let i = 0; i < response.length; i++) {
+        //     console.log(i)
+        //     const curIndex = i
+        //     const listItem = document.createElement('li')
+        //     // const yourDiv = document.createElement('div').setAttribute('class', `yours${curIndex}`)
+        //     // const yourDiv = document.createElement('div').setAttribute('class', `theirs${curIndex}`)
+        //     listItem.innerText = response[i].date
+        //     for (let j = 0; j < response[i].your_trade.length; j++) {
+        //       const p = document.createElement('p')
+        //       p.innerText = response[i].your_trade[j].title
+        //       listItem.appendChild(p)
+        //     }
+        //     const appendLi = document.querySelector('.tradeList').appendChild(listItem)
+
+        //   }
+        // })
     }
   }
 }

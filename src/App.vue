@@ -14,6 +14,7 @@ import Yours from '@/components/Yours'
 import Theirs from '@/components/Theirs'
 import Trade from '@/components/Trade'
 import History from '@/components/History'
+import TradeHistory from '@/components/TradeHistory'
 
 export default {
   name: 'App',
@@ -24,7 +25,8 @@ export default {
     Yours,
     Theirs,
     Trade,
-    History
+    History,
+    TradeHistory
   },
   data(){
     return{
