@@ -13,6 +13,7 @@ import Search from '@/components/Search'
 import Yours from '@/components/Yours'
 import Theirs from '@/components/Theirs'
 import Trade from '@/components/Trade'
+import History from '@/components/History'
 
 export default {
   name: 'App',
@@ -22,7 +23,8 @@ export default {
     Search,
     Yours,
     Theirs,
-    Trade
+    Trade,
+    History
   },
   data(){
     return{

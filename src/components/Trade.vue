@@ -227,11 +227,15 @@ export default {
         },
         body: JSON.stringify({
           date: moment().format("dddd, MMMM Do YYYY"),
-          your_trade: [this.yourTrades],
-          their_trade: [this.theirTrades]
+          your_trade: this.yourTrades,
+          their_trade: this.theirTrades
         })
       })
-    },
+      this.reRoute()
+    }, 
+    reRoute() {
+      this.$router.push('History')
+    }
   }  
 }
 </script>
